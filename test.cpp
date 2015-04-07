@@ -77,14 +77,12 @@ int main() {
     dtime = omp_get_wtime() - dtime;
     printf("iterative time %f, results %lu\n", dtime, result);
     myfile << "iterative time " << dtime <<", results "<< result << endl;
-
     
     dtime = omp_get_wtime();
     result = fib_recursive(n);
     dtime = omp_get_wtime() - dtime;
     printf("recursive time %f, results %lu\n", dtime, result);
     myfile << "recursive time " << dtime <<", results "<< result << endl;
-
     
     dtime = omp_get_wtime();
     result = fib_recursive_omp(n);
@@ -92,7 +90,6 @@ int main() {
     printf("recursive omp time %f, results %lu\n", dtime, result);
     myfile << "recursive omp time " << dtime <<", results "<< result << endl;
 
-    
     omp_set_num_threads(1);
     dtime = omp_get_wtime();
     result = fib_recursive_omp_fix(n);
@@ -100,15 +97,23 @@ int main() {
     printf("recursive omp fix 1 thread time %f, results %lu\n", dtime, result);
     myfile << "recursive omp fix 1 thread time " << dtime <<", results "<< result << endl;
 
-    
     omp_set_num_threads(2);
     dtime = omp_get_wtime();
     result = fib_recursive_omp_fix(n);
     dtime = omp_get_wtime() - dtime;
     printf("recursive omp fix 2 thread, time %f, results %lu\n", dtime, result);
     myfile << "recursive omp fix 1 thread time " << dtime <<", results "<< result << endl;
-
    
     myfile.close();
+    
+    string buff;
+    ifstream fin("datain.dat");
+    if (fin==NULL) {
+        cout << "Error loading file \n";
+    }
+    else {
+        fin >> buff;
+        cout << buff << endl;
+    }
     
 }
