@@ -29,6 +29,7 @@ int main(int argc, char** argv)
         }
     }
 
+<<<<<<< HEAD
     clock_t clockStart, clockStop;
     tms tmsStart, tmsStop;
     step = 1./static_cast<double>(numSteps);
@@ -62,3 +63,53 @@ int main(int argc, char** argv)
     
     return 0;
 }
+=======
+int main() {
+    const size_t n = 40;
+    uint64_t result;
+    double dtime;
+    
+    ofstream myfile;
+    myfile.open ("result.dat");
+    
+    dtime = omp_get_wtime();
+    result = fib_iterative(n);
+    dtime = omp_get_wtime() - dtime;
+    printf("iterative time %f, results %lu\n", dtime, result);
+    myfile << "iterative time " << dtime <<", results "<< result << endl;
+
+    
+    dtime = omp_get_wtime();
+    result = fib_recursive(n);
+    dtime = omp_get_wtime() - dtime;
+    printf("recursive time %f, results %lu\n", dtime, result);
+    myfile << "recursive time " << dtime <<", results "<< result << endl;
+
+    
+    dtime = omp_get_wtime();
+    result = fib_recursive_omp(n);
+    dtime = omp_get_wtime() - dtime;
+    printf("recursive omp time %f, results %lu\n", dtime, result);
+    myfile << "recursive omp time " << dtime <<", results "<< result << endl;
+
+    
+    omp_set_num_threads(1);
+    dtime = omp_get_wtime();
+    result = fib_recursive_omp_fix(n);
+    dtime = omp_get_wtime() - dtime;
+    printf("recursive omp fix 1 thread time %f, results %lu\n", dtime, result);
+    myfile << "recursive omp fix 1 thread time " << dtime <<", results "<< result << endl;
+
+    
+    omp_set_num_threads(2);
+    dtime = omp_get_wtime();
+    result = fib_recursive_omp_fix(n);
+    dtime = omp_get_wtime() - dtime;
+    printf("recursive omp fix 2 thread, time %f, results %lu\n", dtime, result);
+    myfile << "recursive omp fix 1 thread time " << dtime <<", results "<< result << endl;
+
+   
+    myfile.close();
+    
+}
+>>>>>>> parent of 79e1a44... Adding information about datain.dat
