@@ -1,5 +1,5 @@
 #!/bin/sh
 
 
-java Fibonachi
+java Main
 
