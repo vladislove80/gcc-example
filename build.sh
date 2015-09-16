@@ -1,3 +1,3 @@
 #!/bin/sh
 
-make
+javac Fibonachi.java
